@@ -6,6 +6,14 @@
     <title>Registro</title>
 </head>
 <body>
-    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aliquid optio, eum tempora cumque recusandae. Accusamus rerum, modi tempore suscipit maiores corporis possimus recusandae nam dignissimos in, nemo, adipisci harum?</h1>
+    <h1>Registro</h1>
+    <h5>{{Error}}</h5>
+    <form method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <button>
+            <p>Enviar</p>
+        </button>
+    </form>
 </body>
 </html>
