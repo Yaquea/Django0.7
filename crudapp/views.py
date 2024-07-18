@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 #Main menu
 def Main(request):
@@ -31,4 +31,30 @@ def Registro(request):
                   {'form': UserCreationForm, 'Error':Error})
         
 #Inicio de sesion
+def IniciarSesion(request):
+    if request.method == ('GET'):
+         return render(request, 'login.html', 
+                  {'form': AuthenticationForm})
+    else:
+        try:
+            user= authenticate(request, username= request.POST['username'], password = request.POST['password'])
+            login(request, user)
+            return redirect('Main')
+        except AttributeError:
+            Error="Los datos no coinciden"
+            return render(request, 'login.html', 
+                  {'form': AuthenticationForm, 'Error': Error})
+
+    
+        
+
+
+#Cerrar sesion
+def CerrarSesion(request):
+    try:
+        logout(request)
+        return redirect('Main')
+    except:
+        pass
+
             
