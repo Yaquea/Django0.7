@@ -52,6 +52,3 @@ def CerrarSesion(request):
         return redirect('Main')
     except:
         pass
-
-def Producto(request):
-    return render(request, 'Productos.html', {})
