@@ -55,5 +55,3 @@ def CerrarSesion(request):
 
 def Producto(request):
     return render(request, 'Productos.html', {})
-
-            
