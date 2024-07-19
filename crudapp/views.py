@@ -53,4 +53,7 @@ def CerrarSesion(request):
     except:
         pass
 
+def Producto(request):
+    return render(request, 'Productos.html', {})
+
             
