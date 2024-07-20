@@ -5,8 +5,16 @@
     <a href="/productos/creation">Crea tu producto</a>
 </li>
 <div>
-
+    <h1>Busca un producto</h1>
+    <form method="get">
+        {% csrf_token %}
+        <input type="text" placeholder="Buscar...">
+        <button>
+            Buscar
+        </button>
+    </form>
 </div>
+
 <div>
     <ul>
     {% for producto in Lista %}

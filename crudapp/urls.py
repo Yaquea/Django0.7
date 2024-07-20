@@ -9,4 +9,5 @@ urlpatterns = [
     path('IniciarSesion/', views.IniciarSesion, name='IniciarSesion'),
     path('productos', views2.Producto, name='Productos'),
     path('productos/creation', views2.CrearProducto, name='Crear Productos'),
+    path('productos/Misproductos', views2.OwnProducto, name='Mis Productos'),
 ]
