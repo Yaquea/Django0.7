@@ -7,4 +7,6 @@ urlpatterns = [
     path('Registro/', views.Registro, name='Registro'),
     path('CerrarSesion/', views.CerrarSesion , name= 'CerrarSesion'),
     path('IniciarSesion/', views.IniciarSesion, name='IniciarSesion'),
+    path('productos', views2.Producto, name='Productos'),
+    path('productos/creation', views2.CrearProducto, name='Crear Productos'),
 ]

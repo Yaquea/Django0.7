@@ -12,7 +12,7 @@ def Main(request):
 def Registro(request):
 
     if request.method == ('GET'):
-        return render(request, 'Registro.html', 
+        return render(request, 'access/Registro.html', 
                   {'form': UserCreationForm})
     else:
         if request.POST['password1'] == request.POST['password2']:
@@ -23,17 +23,17 @@ def Registro(request):
                 return redirect('Main')
             except IntegrityError:
                 Error= 'Usuario ya existe'
-            return render(request, 'Registro.html', 
+            return render(request, 'access/Registro.html', 
                   {'form': UserCreationForm, 'Error':Error})
         else:
             Error= 'Las password no coinciden'
-            return render(request, 'Registro.html', 
+            return render(request, 'access/Registro.html', 
                   {'form': UserCreationForm, 'Error':Error})
         
 #Inicio de sesion
 def IniciarSesion(request):
     if request.method == ('GET'):
-         return render(request, 'login.html', 
+         return render(request, 'access/login.html', 
                   {'form': AuthenticationForm})
     else:
         try:
@@ -42,7 +42,7 @@ def IniciarSesion(request):
             return redirect('Main')
         except AttributeError:
             Error="Los datos no coinciden"
-            return render(request, 'login.html', 
+            return render(request, 'access/login.html', 
                   {'form': AuthenticationForm, 'Error': Error})
  
 #Cerrar sesion
