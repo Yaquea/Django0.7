@@ -6,10 +6,12 @@
 </li>
 <div>
     <h1>Busca un producto</h1>
-    <form method="get">
+    <h2>{{Error}}</h2>
+    <form method="post">
         {% csrf_token %}
-        <input type="text" placeholder="Buscar...">
-        <button>
+        <label></label>
+        <input type="text" name="Busqueda" maxlength="15" required="">
+        <button  type="submit">
             Buscar
         </button>
     </form>

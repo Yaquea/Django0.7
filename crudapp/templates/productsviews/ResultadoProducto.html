@@ -1,0 +1,28 @@
+{% extends 'Navegacion.html' %}
+
+{% block content %}
+</div>
+<div>
+   
+
+    <ul> 
+        {% for Resultado in Busqueda %}
+        <li> 
+            <h1>{{Resultado.title}}</h1>
+            <h6>{{Resultado.description}}</h6>
+            <h6>{{Resultado.user.username}}</h6>
+            <h6>{{Resultado.price}}</h6>
+            {% if Resultado.onsale == True %}
+            <h2>Producto a la venta</h2>
+            {% else %}
+            <h2>Producto agotado</h2>
+            {% endif %}
+            
+
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock %}
