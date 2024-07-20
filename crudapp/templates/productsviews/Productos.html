@@ -5,6 +5,24 @@
     <a href="productos/creation">Crea tu producto</a>
 </li>
 
-<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, voluptate nemo veritatis omnis iusto expedita provident eveniet facilis tenetur velit similique qui, minus magni pariatur quod, inventore nobis ab fuga!</p>
-<h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, porro veniam similique deleniti earum quam beatae praesentium recusandae aspernatur quod, non voluptatem enim labore quaerat quos inventore animi commodi ipsam!</h2>
+<div>
+    <ul>
+    {% for producto in Lista %}
+    <li>    
+        <h1>{{producto.title}}</h1>
+        <h6>{{producto.description}}</h6>
+        <h6>{{producto.user.username}}</h6>
+        <h6>{{producto.price}}</h6>
+        {% if producto.onsale == True %}
+        <h2>Prodcuto a la venta</h2>
+        {% else %}
+        <h2>Producto agotado</h2>
+        {% endif %}
+
+    </li>
+    {% endfor %}
+    </ul>
+</div>
+
+
 {% endblock %}

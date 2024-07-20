@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class productos(models.Model):
     title = models.CharField(max_length=15)
     description = models.TextField(blank=True)
+    price = models.FloatField(default=0.00)
     created = models.DateField(auto_now_add=True)
     onsale = models.BooleanField(default=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
