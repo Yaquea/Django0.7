@@ -1,28 +1,37 @@
 {% extends 'Navegacion.html' %}
 
 {% block content %}
-<li>
-    <a href="/productos/creation">Crea tu producto</a>
-</li>
 <div>
-
+    <h1>Busca un producto</h1>
+    <h2>{{Error}}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label></label>
+        <input type="text" name="Busqueda" maxlength="15" required="">
+        <button  type="submit">
+            Buscar
+        </button>
+    </form>
 </div>
 <div>
     <ul>
     {% for producto in Lista %}
-    <li>    
-        <h1>{{producto.title}}</h1>
-        <h6>{{producto.description}}</h6>
-        <h6>{{producto.user.username}}</h6>
-        <h6>{{producto.price}}</h6>
-        {% if producto.onsale == True %}
-        <h2>Prodcuto a la venta</h2>
-        {% else %}
-        <h2>Producto agotado</h2>
-        {% endif %}
+    <a href="{% url 'Productos indi' producto.id %}">
+        <li>    
+         <h1>{{producto.title}}</h1>
+         <h6>{{producto.description}}</h6>
+            <h6>{{producto.user.username}}</h6>
+         <h6>{{producto.price}}</h6>
+         {% if producto.onsale == True %}
+         <h2>Prodcuto a la venta</h2>
+         {% else %}
+         <h2>Producto agotado</h2>
+          {% endif %}
 
-    </li>
+     </li>
+    </a>
     {% endfor %}
+     
     </ul>
 </div>
 

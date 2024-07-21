@@ -1,0 +1,22 @@
+{% extends 'Navegacion.html' %}
+
+{% block content %}
+<div>
+    <h1>INFORMACION DE ESTE PRODUCTO</h1>
+   <h2>{{ producto.title }}</h2>
+   <p>{{ producto.description }}</p>
+   <p>{{ producto.price }} USD</p>
+
+    {% if producto.onsale == True %}
+        <h2>Prodcuto a la venta</h2>
+    {% else %}
+        <h2>Producto agotado</h2>
+    {% endif %}
+    <p>Fecha de subida: </p>
+    <p>{{ producto.creation }}</p>
+
+    <p>Usuario que subio el producto: </p>
+    <p>{{ producto.user.username }}</p>
+
+</div>
+{% endblock %}

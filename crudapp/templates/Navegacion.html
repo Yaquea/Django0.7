@@ -7,27 +7,30 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav> 
             <ul>
                 <li>
-                    <a href="/">Casa</a>
+                    <a href="{% url 'Main' %}">Casa</a>
                 </li>
                 <li>
-                    <a href="/productos">productos</a>
+                    <a href="{% url 'Productos' %}">productos</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li>
-                        <a href="/CerrarSesion/">Cerrar sesión</a>
+                        <a href="{% url 'CerrarSesion' %}">Cerrar sesión</a>
                     </li>
                     <li>
-                        <a href="/productos/Misproductos">Mis Productos</a>
+                        <a href="{% url 'Mis Productos' %}">Mis Productos</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'Crear Productos' %}">Sube un producto</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="/Registro/">Registrarse</a>
+                        <a href="{% url 'Registro' %}">Registrarse</a>
                     </li>
                     <li>
-                        <a href="/IniciarSesion/">Iniciar sesión</a>
+                        <a href="{% url 'IniciarSesion' %}">Iniciar sesión</a>
                     </li>
                 {% endif %}
             </ul>
