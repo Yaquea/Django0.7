@@ -34,10 +34,14 @@ def OwnProducto(request):
 
 #Crea una view de cualquier producto individual
 def ProductoInd(request, id):
-    Producto = get_object_or_404(productos, pk = id)
-    return render(request, 'productsviews/Productosind.html', {
-        'producto': Producto
-    })
+    if request.method == ('GET'):
+        Producto = get_object_or_404(productos, pk = id)
+        ProductoLlamado = FormProductos(instance= Producto)
+        return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'form':ProductoLlamado})
+    else:
+        Producto = get_object_or_404(productos, pk = id)
+        ProductoLlamado = FormProductos(instance= Producto)
+        return render(request, 'productsviews/Actualizar.html', {'producto': Producto, 'form':ProductoLlamado})
 
 
 #Esta view permite crear productos

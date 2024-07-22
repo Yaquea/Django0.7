@@ -18,5 +18,12 @@
     <p>Usuario que subio el producto: </p>
     <p>{{ producto.user.username }}</p>
 
+    <form method="post">
+        {% csrf_token %}
+        <Button>
+            Actualizar producto
+        </Button>
+    </form>
+
 </div>
 {% endblock %}
