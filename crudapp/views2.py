@@ -36,12 +36,23 @@ def OwnProducto(request):
 def ProductoInd(request, id):
     if request.method == ('GET'):
         Producto = get_object_or_404(productos, pk = id)
-        ProductoLlamado = FormProductos(instance= Producto)
-        return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'form':ProductoLlamado})
+        ProductoPersonal = productos.objects.filter(pk= id, user = request.user)
+        if ProductoPersonal.exists():
+            ProductoLlamado = FormProductos(instance= Producto)
+            return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'Value': True})
+        else:
+            ProductoLlamado = FormProductos(instance= Producto)
+            return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'Value': False})
     else:
         Producto = get_object_or_404(productos, pk = id)
-        ProductoLlamado = FormProductos(instance= Producto)
-        return render(request, 'productsviews/Actualizar.html', {'producto': Producto, 'form':ProductoLlamado})
+        ProductoPersonal = productos.objects.filter(pk= id, user = request.user)
+        if ProductoPersonal.exists():
+            ProductoLlamado = FormProductos(instance= Producto)
+            return render(request, 'productsviews/Actualizar.html', {'producto': Producto, 'form':ProductoLlamado})
+        else: 
+            Producto = get_object_or_404(productos, pk = id)
+            ProductoLlamado = FormProductos(instance= Producto)
+            return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'Error': 'El producto no es propio', 'Value': False})
 
 
 #Esta view permite crear productos

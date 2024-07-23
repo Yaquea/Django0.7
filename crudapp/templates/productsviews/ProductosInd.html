@@ -3,6 +3,7 @@
 {% block content %}
 <div>
     <h1>INFORMACION DE ESTE PRODUCTO</h1>
+    <h2>{{Error}}</h2>
    <h2>{{ producto.title }}</h2>
    <p>{{ producto.description }}</p>
    <p>{{ producto.price }} USD</p>
@@ -18,12 +19,14 @@
     <p>Usuario que subio el producto: </p>
     <p>{{ producto.user.username }}</p>
 
+    {% if Value %}
     <form method="post">
         {% csrf_token %}
         <Button>
             Actualizar producto
         </Button>
     </form>
+    {% endif %}
 
 </div>
 {% endblock %}
