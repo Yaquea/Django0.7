@@ -9,4 +9,10 @@
         Actualizar
     </button>
 </form>
+<form action="{% url 'Vender' producto.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">
+        Establecer como vendido
+    </button>
+</form>
 {% endblock %}

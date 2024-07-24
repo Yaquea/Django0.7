@@ -64,9 +64,18 @@ def Actualizar(request, id):
     else:
         ProductoPersonal = get_object_or_404(productos, pk=id, user=request.user)
         NewForm = FormProductos(instance=ProductoPersonal)
-        return render(request, 'productsviews/Actualizar.html', {'productoi': ProductoPersonal, 'form': NewForm})
-        
+        return render(request, 'productsviews/Actualizar.html', {'producto': ProductoPersonal, 'form': NewForm})
+    
+def Vendido(request, id):
+    if request.method == 'POST':
 
+        ProductoPersonal = get_object_or_404(productos, pk=id, user=request.user)
+        ProductoPersonal.delete()
+        return redirect('Mis Productos')
+    else:
+        ProductoPersonal = get_object_or_404(productos, pk=id, user=request.user)
+        NewForm = FormProductos(instance=ProductoPersonal)
+        return render(request, 'productsviews/Actualizar.html', {'producto': ProductoPersonal, 'form': NewForm})
 
 
 #Esta view permite crear productos

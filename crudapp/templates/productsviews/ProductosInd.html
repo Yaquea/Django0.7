@@ -26,12 +26,12 @@
             Actualizar producto
         </Button>
     </form>
-    
-    <form method="post">
+
+    <form action="{% url 'Vender' producto.id %}" method="post">
         {% csrf_token %}
-        <Button>
-            Marcar producto como vendido
-        </Button>
+        <button type="submit">
+            Establecer como vendido
+        </button>
     </form>
     {% endif %}
 
