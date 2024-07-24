@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import NoReverseMatch
 from .models import productos
 from .forms import FormProductos
 from django.core.exceptions import ObjectDoesNotExist
@@ -32,27 +33,40 @@ def OwnProducto(request):
         return render(request, 'productsviews/OwnProductos.html', {'Lista': ListaProductos, })
     
 
-#Crea una view de cualquier producto individual
 def ProductoInd(request, id):
-    if request.method == ('GET'):
-        Producto = get_object_or_404(productos, pk = id)
-        ProductoPersonal = productos.objects.filter(pk= id, user = request.user)
+    if request.method == 'GET':
+        Producto = get_object_or_404(productos, pk=id)
+        ProductoPersonal = productos.objects.filter(pk=id, user=request.user)
         if ProductoPersonal.exists():
-            ProductoLlamado = FormProductos(instance= Producto)
             return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'Value': True})
         else:
-            ProductoLlamado = FormProductos(instance= Producto)
             return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'Value': False})
     else:
-        Producto = get_object_or_404(productos, pk = id)
-        ProductoPersonal = productos.objects.filter(pk= id, user = request.user)
+        ProductoPersonal = productos.objects.filter(pk=id, user=request.user)
         if ProductoPersonal.exists():
-            ProductoLlamado = FormProductos(instance= Producto)
-            return render(request, 'productsviews/Actualizar.html', {'producto': Producto, 'form':ProductoLlamado})
-        else: 
-            Producto = get_object_or_404(productos, pk = id)
-            ProductoLlamado = FormProductos(instance= Producto)
+            Producto = get_object_or_404(productos, pk=id)
+            ProductoLlamado = FormProductos(instance=Producto)
+            return render(request, 'productsviews/Actualizar.html', {'producto': Producto, 'form': ProductoLlamado})
+        else:
+            Producto = get_object_or_404(productos, pk=id)
             return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'Error': 'El producto no es propio', 'Value': False})
+
+def Actualizar(request, id):
+    if request.method == 'POST':
+
+        ProductoPersonal = get_object_or_404(productos, pk=id, user=request.user)
+        NewForm = FormProductos(request.POST, instance=ProductoPersonal)
+        if NewForm.is_valid():
+            NewForm.save()
+            return redirect('Mis Productos')
+        else:
+            return render(request, 'productsviews/Actualizar.html', {'producto': ProductoPersonal, 'form': NewForm, 'Error': 'Datos no validos'})
+    else:
+        ProductoPersonal = get_object_or_404(productos, pk=id, user=request.user)
+        NewForm = FormProductos(instance=ProductoPersonal)
+        return render(request, 'productsviews/Actualizar.html', {'productoi': ProductoPersonal, 'form': NewForm})
+        
+
 
 
 #Esta view permite crear productos

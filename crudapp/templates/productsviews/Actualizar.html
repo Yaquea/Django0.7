@@ -1,7 +1,12 @@
 {% extends 'Navegacion.html' %}
 
 {% block content %}
-
-{{form}}
-
+<form action="{% url 'Actualizar' producto.id %}" method="post">
+    {% csrf_token %}
+    <h2> {{Error}} </h2>
+    {{ form }}
+    <button type="submit">
+        Actualizar
+    </button>
+</form>
 {% endblock %}

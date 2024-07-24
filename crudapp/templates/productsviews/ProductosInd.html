@@ -26,6 +26,13 @@
             Actualizar producto
         </Button>
     </form>
+    
+    <form method="post">
+        {% csrf_token %}
+        <Button>
+            Marcar producto como vendido
+        </Button>
+    </form>
     {% endif %}
 
 </div>
