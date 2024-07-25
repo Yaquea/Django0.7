@@ -3,6 +3,7 @@ from django.urls import NoReverseMatch
 from .models import productos
 from .forms import FormProductos
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 #Muestra todos los productos hechos por cualquier usuario
 def Producto(request):
@@ -19,6 +20,7 @@ def Producto(request):
 
 
 #Muestra solo los productos creados por personas
+@login_required
 def OwnProducto(request):
     
     if request.method == ('POST'):
@@ -32,7 +34,7 @@ def OwnProducto(request):
         ListaProductos = productos.objects.filter(user=request.user)
         return render(request, 'productsviews/OwnProductos.html', {'Lista': ListaProductos, })
     
-
+@login_required
 def ProductoInd(request, id):
     if request.method == 'GET':
         Producto = get_object_or_404(productos, pk=id)
@@ -50,7 +52,8 @@ def ProductoInd(request, id):
         else:
             Producto = get_object_or_404(productos, pk=id)
             return render(request, 'productsviews/Productosind.html', {'producto': Producto, 'Error': 'El producto no es propio', 'Value': False})
-
+        
+@login_required
 def Actualizar(request, id):
     if request.method == 'POST':
 
@@ -66,6 +69,7 @@ def Actualizar(request, id):
         NewForm = FormProductos(instance=ProductoPersonal)
         return render(request, 'productsviews/Actualizar.html', {'producto': ProductoPersonal, 'form': NewForm})
     
+@login_required    
 def Vendido(request, id):
     if request.method == 'POST':
 
@@ -79,6 +83,7 @@ def Vendido(request, id):
 
 
 #Esta view permite crear productos
+@login_required
 def CrearProducto(request):
     if request.method == 'GET':
         return render(request, 'productsviews/CrearProductos.html', {

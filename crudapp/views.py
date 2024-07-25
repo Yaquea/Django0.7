@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 #Main menu
 def Main(request):
@@ -46,6 +47,7 @@ def IniciarSesion(request):
                   {'form': AuthenticationForm, 'Error': Error})
  
 #Cerrar sesion
+@login_required
 def CerrarSesion(request):
     try:
         logout(request)
