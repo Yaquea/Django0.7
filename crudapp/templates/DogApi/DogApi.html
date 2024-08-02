@@ -1,0 +1,21 @@
+{% extends 'Navegacion.html' %}
+
+{% block content %}
+
+<h1>Imagen Aleatoria de Perro</h1>
+
+    <img src="{{ Api }}" alt="Random Dog Image">
+
+
+<a>Buscar de una raza</a>
+<form method="post">
+    {% csrf_token %}
+    <label></label>
+    <input type="text" name="Busqueda" maxlength="15" required="">
+    <button  type="submit">
+        Buscar
+    </button>
+</form>
+
+
+{% endblock %}

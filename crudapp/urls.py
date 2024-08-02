@@ -1,6 +1,5 @@
 from django.urls import path
-from . import views
-from . import views2
+from . import views, views2, views3
 
 urlpatterns = [
     path('', views.Main, name='Main'),
@@ -16,4 +15,8 @@ urlpatterns = [
     path('productos/<int:id>/Vendido', views2.Vendido, name='Vender'),
     path('productos/creation', views2.CrearProducto, name='Crear Productos'),
     path('productos/Misproductos', views2.OwnProducto, name='Mis Productos'),
+
+
+    #DogApi
+     path('random-dog-image/', views3.RandomDog, name='DogMain'),
 ]

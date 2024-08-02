@@ -15,6 +15,9 @@
                 <li>
                     <a href="{% url 'Productos' %}">productos</a>
                 </li>
+                <li>
+                    <a href="{% url 'DogMain' %}">Imagenes de perritos</a>
+                </li>
                 {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'CerrarSesion' %}">Cerrar sesión</a>
